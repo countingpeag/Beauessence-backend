@@ -1,0 +1,45 @@
+package com.beauessence.agenda.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.beauessence.agenda.models.ServiceModel;
+import com.beauessence.agenda.services.ServiceServices;
+
+@RestController
+@RequestMapping("service")
+public class ServiceController {
+	
+	@Autowired
+	private ServiceServices serviceServices;
+	
+	@GetMapping("getServices")
+	public ResponseEntity<List<ServiceModel>> getServices(){
+		return new ResponseEntity<>(serviceServices.retrieveAllServices(), HttpStatus.OK);
+	}
+	
+	@PostMapping("/addService")
+	public ResponseEntity<ServiceModel> addService(ServiceModel service) {
+		return new ResponseEntity<>(serviceServices.appendService(service), HttpStatus.CREATED);
+	}
+	
+	@DeleteMapping("/removeService")
+	public ResponseEntity<String> removeService(ServiceModel service) {
+		serviceServices.removeService(service);
+		return new ResponseEntity<>("Id:"+service.getIdService(), HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateService")
+	public ResponseEntity<ServiceModel> updateService(ServiceModel Service) {
+		return new ResponseEntity<>(serviceServices.updateService(Service), HttpStatus.OK);
+	}
+}
