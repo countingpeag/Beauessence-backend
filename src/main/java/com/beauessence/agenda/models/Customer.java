@@ -30,9 +30,6 @@ public class Customer {
 	public Integer getIdCustomer() {
 		return idCustomer;
 	}
-	public void setIdCustomer(Integer idCustomer) {
-		this.idCustomer = idCustomer;
-	}
 	public String getName() {
 		return name;
 	}

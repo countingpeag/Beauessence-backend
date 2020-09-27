@@ -22,9 +22,6 @@ public class ServiceModel {
 	public Integer getIdService() {
 		return idService;
 	}
-	public void setIdService(Integer idService) {
-		this.idService = idService;
-	}
 	public String getServiceName() {
 		return serviceName;
 	}

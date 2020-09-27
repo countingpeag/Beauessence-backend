@@ -33,9 +33,6 @@ public class Schedule {
 	public Integer getIdSchedule() {
 		return idSchedule;
 	}
-	public void setIdSchedule(Integer idSchedule) {
-		this.idSchedule = idSchedule;
-	}
 	public Date getScheduleDate() {
 		return scheduleDate;
 	}

@@ -40,9 +40,6 @@ public class Sale {
 	public Integer getIdSale() {
 		return idSale;
 	}
-	public void setIdSale(Integer idSale) {
-		this.idSale = idSale;
-	}
 	public Date getSaleDate() {
 		return saleDate;
 	}

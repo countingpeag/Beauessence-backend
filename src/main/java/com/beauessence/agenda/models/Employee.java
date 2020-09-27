@@ -32,9 +32,6 @@ public class Employee {
 	public Integer getIdEmployee() {
 		return idEmployee;
 	}
-	public void setIdEmployee(Integer idEmployee) {
-		this.idEmployee = idEmployee;
-	}
 	public String getName() {
 		return name;
 	}
