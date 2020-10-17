@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,8 @@ public class SaleServices {
 		return saleRep.save(sale);
 	}
 	
-	public List<Sale> retrieveSalesByDate(String date){
-		List<Sale> sales = null;
+	public Optional<List<Sale>> retrieveSalesByDate(String date){
+		Optional<List<Sale>> sales = null;
 		try {
 			String dateFormat = "yyyy-MM-dd";
 			Date saleDate = new SimpleDateFormat(dateFormat).parse(date);

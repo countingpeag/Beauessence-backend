@@ -16,7 +16,7 @@ public class ScheduleServices {
 	@Autowired
 	private ScheduleRep scheduleRep;
 	
-	public List<Schedule> retrieveSchedulesByDate(Optional<Date> date){
+	public Optional<List<Schedule>> retrieveSchedulesByDate(Optional<Date> date){
 		return scheduleRep.findByscheduleDate(date.get());
 	}
 	

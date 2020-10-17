@@ -28,7 +28,7 @@ public class ScheduleController {
 	@GetMapping(value = {"/getSchedules", "/getSchedules/{date}"})
 	public ResponseEntity<List<Schedule>> getSchedules(@PathVariable("date") Optional<Date> date){
 		if(date.isPresent()) 
-			return new ResponseEntity<>(scheduleServices.retrieveSchedulesByDate(date), HttpStatus.OK);
+			return new ResponseEntity<>(scheduleServices.retrieveSchedulesByDate(date).get(), HttpStatus.OK);
 		else
 			return new ResponseEntity<>(scheduleServices.retrieveAllSchedules(), HttpStatus.OK);
 	}

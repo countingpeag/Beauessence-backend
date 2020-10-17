@@ -31,7 +31,7 @@ public class SaleController {
 	
 	@GetMapping("/salesByDate/{date}")
 	public ResponseEntity<List<Sale>> retrieveSalesByDate(@PathVariable("date") String date){
-		return new ResponseEntity<>(saleService.retrieveSalesByDate(date), HttpStatus.OK);
+		return new ResponseEntity<>(saleService.retrieveSalesByDate(date).get(), HttpStatus.OK);
 	}
 	
 	@PostMapping("/addSale")
