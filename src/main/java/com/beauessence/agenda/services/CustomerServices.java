@@ -16,8 +16,12 @@ import com.beauessence.agenda.repositories.CustomerRep;
 @Service
 public class CustomerServices {
 
-	@Autowired
 	private CustomerRep customerRep;
+	
+	@Autowired
+	public CustomerServices(CustomerRep customerRep) {
+		this.customerRep=customerRep;
+	}
 	
 	public List<Customer> retrieveCustomerById(Optional<Integer> id) {
 		List<Customer> list = new LinkedList<Customer>();

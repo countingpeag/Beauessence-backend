@@ -21,8 +21,12 @@ import com.beauessence.agenda.services.SaleServices;
 @RequestMapping("sale")
 public class SaleController {
 	
-	@Autowired
 	private SaleServices saleService;
+	
+	@Autowired
+	public SaleController(SaleServices saleService) {
+		this.saleService=saleService;
+	}
 	
 	@GetMapping("/getSales")
 	public ResponseEntity<List<Sale>> retrieveSales() {

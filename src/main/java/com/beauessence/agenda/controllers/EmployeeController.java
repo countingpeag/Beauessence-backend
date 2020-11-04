@@ -21,8 +21,12 @@ import com.beauessence.agenda.services.EmployeeServices;
 @RequestMapping("employee")
 public class EmployeeController {
 
-	@Autowired
 	private EmployeeServices employeeServices;
+	
+	@Autowired
+	public EmployeeController(EmployeeServices employeeServices) {
+		this.employeeServices=employeeServices;
+	}
 	
 	@GetMapping(value = {"/getEmployees", "/getEmployee/{id}"})
 	public ResponseEntity<List<Employee>> retrieveEmployee(@PathVariable("id") Optional<Integer> id) {

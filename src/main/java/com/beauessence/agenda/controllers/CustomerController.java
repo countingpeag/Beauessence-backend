@@ -20,8 +20,12 @@ import com.beauessence.agenda.services.CustomerServices;
 @RequestMapping("customer")
 public class CustomerController {
 
-	@Autowired
 	private CustomerServices customerServices;
+	
+	@Autowired
+	public CustomerController(CustomerServices customerServices) {
+		this.customerServices=customerServices;
+	}
 	
 	@GetMapping(value = {"getCustomers", "getCustomer/{id}"})
 	public ResponseEntity<List<Customer>> retrieveCustomers(@PathVariable("id") Optional<Integer> id) {

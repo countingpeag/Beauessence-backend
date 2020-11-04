@@ -16,8 +16,12 @@ import com.beauessence.agenda.repositories.EmployeeRep;
 @Service
 public class EmployeeServices {
 	
-	@Autowired
 	private EmployeeRep employeeRep;
+	
+	@Autowired
+	public EmployeeServices(EmployeeRep employeeRep) {
+		this.employeeRep=employeeRep;
+	}
 	
 	public List<Employee> retrieveEmployeeById(Optional<Integer> id){
 		

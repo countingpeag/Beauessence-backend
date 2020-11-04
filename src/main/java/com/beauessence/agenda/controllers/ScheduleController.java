@@ -22,8 +22,12 @@ import com.beauessence.agenda.services.ScheduleServices;
 @RequestMapping("schedule")
 public class ScheduleController {
 	
-	@Autowired
 	private ScheduleServices scheduleServices;
+	
+	@Autowired
+	public ScheduleController(ScheduleServices scheduleServices) {
+		this.scheduleServices=scheduleServices;
+	}
 	
 	@GetMapping(value = {"/getSchedules", "/getSchedules/{date}"})
 	public ResponseEntity<List<Schedule>> getSchedules(@PathVariable("date") Optional<Date> date){

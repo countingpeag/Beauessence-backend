@@ -13,8 +13,12 @@ import com.beauessence.agenda.repositories.ServiceRep;
 @Service
 public class ServiceServices {
 
-	@Autowired
 	private ServiceRep serviceRep;
+	
+	@Autowired
+	public ServiceServices(ServiceRep serviceRep) {
+		this.serviceRep=serviceRep;
+	}
 	
 	public List<ServiceModel> retrieveAllServices() {
 		List<ServiceModel> list = null;

@@ -19,8 +19,12 @@ import com.beauessence.agenda.services.ServiceServices;
 @RequestMapping("service")
 public class ServiceController {
 	
-	@Autowired
 	private ServiceServices serviceServices;
+	
+	@Autowired
+	public ServiceController(ServiceServices serviceServices) {
+		this.serviceServices=serviceServices;
+	}
 	
 	@GetMapping("getServices")
 	public ResponseEntity<List<ServiceModel>> getServices(){

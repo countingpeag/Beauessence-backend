@@ -15,8 +15,12 @@ import com.beauessence.agenda.repositories.SaleRep;
 @Service
 public class SaleServices {
 
-	@Autowired
 	private SaleRep saleRep;
+	
+	@Autowired
+	public SaleServices(SaleRep saleRep) {
+		this.saleRep=saleRep;
+	}
 	
 	public List<Sale> retrieveSales() {
 		return (List<Sale>) saleRep.findAll();

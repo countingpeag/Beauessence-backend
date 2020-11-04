@@ -13,8 +13,12 @@ import com.beauessence.agenda.repositories.ScheduleRep;
 @Service
 public class ScheduleServices {
 	
-	@Autowired
 	private ScheduleRep scheduleRep;
+
+	@Autowired
+	public ScheduleServices(ScheduleRep scheduleRep) {
+		this.scheduleRep=scheduleRep;
+	}
 	
 	public Optional<List<Schedule>> retrieveSchedulesByDate(Optional<Date> date){
 		return scheduleRep.findByscheduleDate(date.get());
