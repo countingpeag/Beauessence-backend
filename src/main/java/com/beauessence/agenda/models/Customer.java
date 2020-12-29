@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sun.istack.NotNull;
 
 @Entity
 @JsonIdentityInfo(
@@ -18,6 +19,7 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@NotNull
 	@Column(name="ID_CUSTOMER")
 	private Integer idCustomer;
 	private String name;

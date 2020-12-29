@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -19,9 +20,10 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Employee {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_EMPLOYEE")
 	private Integer idEmployee;
+	@NotBlank(message="Name is required")
 	private String name;
 	private String lastName;
 	private String phone;
@@ -61,5 +63,11 @@ public class Employee {
 	}
 	public void setSales(Set<Sale> sales) {
 		this.sales = sales;
+	}
+	
+	@Override
+	public String toString() {
+		return "Employee [idEmployee=" + idEmployee + ", name=" + name + ", lastName=" + lastName + ", phone=" + phone
+				+ ", email=" + email + ", sales=" + sales + "]";
 	}
 }

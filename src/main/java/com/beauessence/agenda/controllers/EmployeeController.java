@@ -3,6 +3,8 @@ package com.beauessence.agenda.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,18 +41,18 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/addEmployee")
-	public ResponseEntity<Employee> addCustomer(Employee employee) {
+	public ResponseEntity<Employee> addEmployee(@Valid @RequestBody Employee employee) {
 		return new ResponseEntity<>(employeeServices.apendEmployee(employee), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/removeEmployee")
-	public ResponseEntity<String> removeCustomer(Employee employee) {
+	public ResponseEntity<String> removeEmployee(@RequestBody Employee employee) {
 		employeeServices.removeEmployee(employee);
 		return new ResponseEntity<>("Id:"+ employee.getIdEmployee(), HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateEmployee")
-	public ResponseEntity<Employee> updateCustomer(Employee employee) {
+	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
 		return new ResponseEntity<>(employeeServices.updateEmployee(employee), HttpStatus.OK);
 	}
 }
