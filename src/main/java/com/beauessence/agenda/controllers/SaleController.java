@@ -44,13 +44,13 @@ public class SaleController {
 	}
 	
 	@DeleteMapping("/removeSale")
-	public ResponseEntity<String> removeSale(Sale sale) {
+	public ResponseEntity<String> removeSale(@RequestBody Sale sale) {
 		saleService.removeSale(sale);
 		return new ResponseEntity<>("id:"+sale.getIdSale(), HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateSale")
-	public ResponseEntity<Sale> updateSale(Sale sale) {
+	public ResponseEntity<Sale> updateSale(@RequestBody Sale sale) {
 		return new ResponseEntity<>(saleService.updateSale(sale), HttpStatus.OK);
 	}
 

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -26,6 +27,7 @@ public class Employee {
 	@NotBlank(message="Name is required")
 	private String name;
 	private String lastName;
+	@NotBlank(message="Phone is required")
 	private String phone;
 	private String email;
 	@OneToMany(mappedBy="employee")

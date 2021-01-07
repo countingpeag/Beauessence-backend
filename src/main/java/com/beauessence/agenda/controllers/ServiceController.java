@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,18 +33,18 @@ public class ServiceController {
 	}
 	
 	@PostMapping("/addService")
-	public ResponseEntity<ServiceModel> addService(ServiceModel service) {
+	public ResponseEntity<ServiceModel> addService(@RequestBody ServiceModel service) {
 		return new ResponseEntity<>(serviceServices.appendService(service), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/removeService")
-	public ResponseEntity<String> removeService(ServiceModel service) {
+	public ResponseEntity<String> removeService(@RequestBody ServiceModel service) {
 		serviceServices.removeService(service);
 		return new ResponseEntity<>("Id:"+service.getIdService(), HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateService")
-	public ResponseEntity<ServiceModel> updateService(ServiceModel Service) {
+	public ResponseEntity<ServiceModel> updateService(@RequestBody ServiceModel Service) {
 		return new ResponseEntity<>(serviceServices.updateService(Service), HttpStatus.OK);
 	}
 }

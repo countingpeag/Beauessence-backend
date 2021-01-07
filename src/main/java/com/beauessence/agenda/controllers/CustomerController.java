@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,12 +39,12 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/addCustomer")
-	public ResponseEntity<Customer> addCustomer(Customer customer) {
+	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
 		return new ResponseEntity<>(customerServices.appendCustomer(customer), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/removeCustomer")
-	public ResponseEntity<String> removeCustomer(Customer customer) {
+	public ResponseEntity<String> removeCustomer(@RequestBody Customer customer) {
 		customerServices.removeCustomer(customer);
 		return new ResponseEntity<>("Id:"+customer.getIdCustomer(), HttpStatus.OK);
 	}

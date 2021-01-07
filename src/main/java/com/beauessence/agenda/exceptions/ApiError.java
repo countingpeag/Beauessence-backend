@@ -1,6 +1,8 @@
 package com.beauessence.agenda.exceptions;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 
@@ -11,7 +13,7 @@ public class ApiError {
 	private HttpStatus status;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private LocalDateTime timestamp;
-    private String message;
+    private List<String> messages;
 	private String debugMessage;
 	
 	private ApiError() {
@@ -26,14 +28,14 @@ public class ApiError {
 	ApiError(HttpStatus status, Throwable ex) {
 		this();
 		this.status = status;
-		this.message = "Unexpected error";
+		this.messages = Arrays.asList(new String[] {"Unexpected error"});
 		this.debugMessage = ex.getLocalizedMessage();
 	}
 
-	ApiError(HttpStatus status, String message, Throwable ex) {
+	ApiError(HttpStatus status, List<String> messages, Throwable ex) {
 		this();
 		this.status = status;
-		this.message = message;
+		this.messages = messages;
 		this.debugMessage = ex.getLocalizedMessage();
 	}
 
@@ -53,12 +55,12 @@ public class ApiError {
 		this.timestamp = timestamp;
 	}
 
-	public String getMessage() {
-		return message;
+	public List<String> getMessages() {
+		return messages;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setMessage(List<String> messages) {
+		this.messages = messages;
 	}
 
 	public String getDebugMessage() {

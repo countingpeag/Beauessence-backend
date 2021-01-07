@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,18 +39,18 @@ public class ScheduleController {
 	}
 	
 	@PostMapping("/addSchedule")
-	public ResponseEntity<Schedule> addSchedule(Schedule schedule) {
+	public ResponseEntity<Schedule> addSchedule(@RequestBody Schedule schedule) {
 		return new ResponseEntity<>(scheduleServices.appendSchedule(schedule), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/removeSchedule")
-	public ResponseEntity<String> removeSchedule(Schedule schedule) {
+	public ResponseEntity<String> removeSchedule(@RequestBody Schedule schedule) {
 		scheduleServices.removeSchedule(schedule);
 		return new ResponseEntity<>("Id:"+schedule.getIdSchedule(), HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateSchedule")
-	public ResponseEntity<Schedule> updateSchedule(Schedule schedule) {
+	public ResponseEntity<Schedule> updateSchedule(@RequestBody Schedule schedule) {
 		return new ResponseEntity<>(scheduleServices.updateSchedule(schedule), HttpStatus.OK);
 	}
 }
