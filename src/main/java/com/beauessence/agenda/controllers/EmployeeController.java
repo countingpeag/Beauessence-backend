@@ -47,13 +47,13 @@ public class EmployeeController {
 	}
 	
 	@DeleteMapping("/removeEmployee")
-	public ResponseEntity<String> removeEmployee(@RequestBody Employee employee) {
+	public ResponseEntity<String> removeEmployee(@Valid @RequestBody Employee employee, BindingResult br) {
 		employeeServices.removeEmployee(employee);
 		return new ResponseEntity<>("Id:"+ employee.getIdEmployee(), HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateEmployee")
-	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
+	public ResponseEntity<Employee> updateEmployee(@Valid @RequestBody Employee employee, BindingResult br) {
 		return new ResponseEntity<>(employeeServices.updateEmployee(employee), HttpStatus.OK);
 	}
 }

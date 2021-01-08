@@ -2,9 +2,12 @@ package com.beauessence.agenda.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,18 +42,18 @@ public class SaleController {
 	}
 	
 	@PostMapping("/addSale")
-	public ResponseEntity<Sale> addSale(@RequestBody Sale sale) {
+	public ResponseEntity<Sale> addSale(@Valid @RequestBody Sale sale, BindingResult br) {
 		return new ResponseEntity<>(saleService.appendSale(sale), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/removeSale")
-	public ResponseEntity<String> removeSale(@RequestBody Sale sale) {
+	public ResponseEntity<String> removeSale(@Valid @RequestBody Sale sale, BindingResult br) {
 		saleService.removeSale(sale);
 		return new ResponseEntity<>("id:"+sale.getIdSale(), HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateSale")
-	public ResponseEntity<Sale> updateSale(@RequestBody Sale sale) {
+	public ResponseEntity<Sale> updateSale(@Valid @RequestBody Sale sale, BindingResult br) {
 		return new ResponseEntity<>(saleService.updateSale(sale), HttpStatus.OK);
 	}
 

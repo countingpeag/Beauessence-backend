@@ -4,9 +4,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,18 +42,18 @@ public class ScheduleController {
 	}
 	
 	@PostMapping("/addSchedule")
-	public ResponseEntity<Schedule> addSchedule(@RequestBody Schedule schedule) {
+	public ResponseEntity<Schedule> addSchedule(@Valid @RequestBody Schedule schedule, BindingResult br) {
 		return new ResponseEntity<>(scheduleServices.appendSchedule(schedule), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/removeSchedule")
-	public ResponseEntity<String> removeSchedule(@RequestBody Schedule schedule) {
+	public ResponseEntity<String> removeSchedule(@Valid @RequestBody Schedule schedule, BindingResult br) {
 		scheduleServices.removeSchedule(schedule);
 		return new ResponseEntity<>("Id:"+schedule.getIdSchedule(), HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateSchedule")
-	public ResponseEntity<Schedule> updateSchedule(@RequestBody Schedule schedule) {
+	public ResponseEntity<Schedule> updateSchedule(@Valid @RequestBody Schedule schedule, BindingResult br) {
 		return new ResponseEntity<>(scheduleServices.updateSchedule(schedule), HttpStatus.OK);
 	}
 }

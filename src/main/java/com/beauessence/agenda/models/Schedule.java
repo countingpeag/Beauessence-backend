@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -20,10 +21,12 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Schedule {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_SCHEDULE")
 	private Integer idSchedule;
+	@NotNull(message = "Date cannot be null")
 	private Date scheduleDate;
+	@NotNull(message = "Time cannot be null")
 	private Date scheduleTime;
 	private String comment;
 	@OneToOne

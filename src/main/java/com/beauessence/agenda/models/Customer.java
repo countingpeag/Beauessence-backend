@@ -6,10 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.sun.istack.NotNull;
 
 @Entity
 @JsonIdentityInfo(
@@ -18,13 +19,16 @@ import com.sun.istack.NotNull;
 public class Customer {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@NotNull
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_CUSTOMER")
 	private Integer idCustomer;
+	@NotBlank(message="Name is required")
 	private String name;
 	private String lastName;
+	@NotBlank(message="Phone is required")
+	@Size(min=8, max=10, message= "The phone should be more than 8 digits and less than 10.")	
 	private String phone;
+	@NotBlank(message="Email is required")
 	private String email;
 	@OneToOne(mappedBy = "customer")
 	private Schedule schedule;

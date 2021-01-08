@@ -3,9 +3,12 @@ package com.beauessence.agenda.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,16 +38,16 @@ public class CustomerController {
 			return new ResponseEntity<>(customerServices.retrieveCustomerById(id), HttpStatus.OK);
 		else
 			return new ResponseEntity<>(customerServices.retrieveCustomers(), HttpStatus.OK);
-		
+
 	}
 	
 	@PostMapping("/addCustomer")
-	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
+	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer customer, BindingResult br) {
 		return new ResponseEntity<>(customerServices.appendCustomer(customer), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/removeCustomer")
-	public ResponseEntity<String> removeCustomer(@RequestBody Customer customer) {
+	public ResponseEntity<String> removeCustomer(@Valid @RequestBody Customer customer, BindingResult br) {
 		customerServices.removeCustomer(customer);
 		return new ResponseEntity<>("Id:"+customer.getIdCustomer(), HttpStatus.OK);
 	}

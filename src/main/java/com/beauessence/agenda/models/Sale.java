@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @JsonIdentityInfo(
@@ -24,11 +25,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Sale {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_SALE")
 	private Integer idSale;
+	@NotNull(message = "Date cannot be null")
 	private Date saleDate;
+	@NotNull(message = "Time cannot be null")
 	private Date saleTime;
+	@NotNull(message = "Total amount cannot be null")
 	private Integer total;
 	@ManyToOne
 	@JoinColumn(name="EMPLOYEE_ID_EMPLOYEE")

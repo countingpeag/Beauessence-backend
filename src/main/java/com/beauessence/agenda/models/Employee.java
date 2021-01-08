@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -28,7 +28,9 @@ public class Employee {
 	private String name;
 	private String lastName;
 	@NotBlank(message="Phone is required")
+	@Size(min=8, max=10, message= "The phone should be more than 8 digits and less than 10.")	
 	private String phone;
+	@NotBlank(message="Email is required")
 	private String email;
 	@OneToMany(mappedBy="employee")
 	private Set<Sale> sales;

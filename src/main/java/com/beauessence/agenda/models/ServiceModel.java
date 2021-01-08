@@ -6,16 +6,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="service")
 public class ServiceModel {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_SERVICE")
 	private Integer idService;
+	@NotBlank(message="Name is required")
 	private String serviceName;
+	@NotBlank(message="price is required")
 	private Integer price;
 	private String description;
 	
