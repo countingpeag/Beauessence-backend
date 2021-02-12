@@ -23,6 +23,10 @@ public class EmployeeServices {
 		this.employeeRep=employeeRep;
 	}
 	
+	public String testMethod() {
+		return "This is a test";
+	}
+	
 	public List<Employee> retrieveEmployeeById(Optional<Integer> id){
 		
 		List<Employee> list = new LinkedList<Employee>();

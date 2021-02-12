@@ -35,6 +35,9 @@ public class Employee {
 	@OneToMany(mappedBy="employee")
 	private Set<Sale> sales;
 	
+	public void setIdEmployee(Integer idEmployee) {
+		this.idEmployee = idEmployee;
+	}
 	public Integer getIdEmployee() {
 		return idEmployee;
 	}
