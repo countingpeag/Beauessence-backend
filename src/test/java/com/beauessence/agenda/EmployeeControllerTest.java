@@ -6,8 +6,11 @@ import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -98,6 +101,25 @@ public class EmployeeControllerTest {
 		mvc.perform(post("/employee/addEmployee").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(employee1)))
 		.andExpect(status().isCreated());
+	}
+	
+	@Test
+	public void deleteEmployeeTest() throws Exception {
+		
+		doNothing().when(empService).removeEmployee(employee1);
+		
+		mvc.perform(delete("/employee/removeEmployee").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(employee1)))
+		.andExpect(status().isOk());
+	}
+	
+	public void updateEmployeeTest() throws Exception{
+		given(empService.updateEmployee(employee1)).willReturn(employee1);
+		
+		mvc.perform(put("/employee/updateEmployee").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(employee1)))
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$", is(employee1)));
 	}
 
 }

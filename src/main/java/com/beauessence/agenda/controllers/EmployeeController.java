@@ -32,11 +32,6 @@ public class EmployeeController {
 		this.employeeServices=employeeServices;
 	}
 	
-	@GetMapping("/sayhi")
-	public String testHi() {
-		return "Hi, it's me";
-	}
-	
 	@GetMapping(value = {"/getEmployees", "/getEmployee/{id}"})
 	public ResponseEntity<List<Employee>> retrieveEmployee(@PathVariable("id") Optional<Integer> id) {
 		
