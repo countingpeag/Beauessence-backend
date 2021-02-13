@@ -1,4 +1,4 @@
-package com.beauessence.agenda;
+package com.beauessence.agenda.controllers;
 
 import java.util.Arrays;
 import java.util.List;

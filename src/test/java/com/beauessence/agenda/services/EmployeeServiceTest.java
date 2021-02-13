@@ -1,4 +1,4 @@
-package com.beauessence.agenda;
+package com.beauessence.agenda.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
